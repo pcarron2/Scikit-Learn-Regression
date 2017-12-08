@@ -40,11 +40,12 @@ def loadRobotData():
 	print(features_test[0])
 	print(labels_test[0])
 	return features_train,labels_train,features_test,labels_test
-'''
-I wrote the function below to look at the interaction term i was interested 
-in analyzing for the robot data
-'''
+
 def addInteractionTerm(features_train,features_test,col1,col2):
+	'''
+	I wrote the function below to look at the interaction term i was interested 
+	in analyzing for the robot data
+	'''
 	jointInteract=features_train[:,col1]*features_train[:,col2]
 	jointInteractTest=features_test[:,col1]*features_test[:col2]
 	features_train=np.hstack((features_train,np.transpose(np.array([jointInteract]))))
@@ -52,11 +53,12 @@ def addInteractionTerm(features_train,features_test,col1,col2):
 	return features_train, features_test
 
 
-'''
-Below is my Ridge and Lasso experiment on the Robot Data
-'''
+
 
 def robotRidgeLassoExp():
+	'''
+	Below is my Ridge and Lasso experiment on the Robot Data
+	'''
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2)),
 				('feat_select',SelectKBest(f_regression,k=10)),
@@ -73,11 +75,12 @@ def robotRidgeLassoExp():
 	kaggle.kaggleize(predict, "../Predictions/RobotArm/GridCVRidgeLassoTest.csv")
 	return gridCV.grid_scores_
 
-'''
-Below is my tree regression Expirament with the robot data
-'''
+
 
 def robotTreeRegExp():
+	'''
+	Below is my tree regression Expirament with the robot data
+	'''
 	print "Starting Robot Tree Reg Expirament"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
@@ -97,13 +100,14 @@ def robotTreeRegExp():
 	kaggle.kaggleize(predict, "../Predictions/RobotArm/GridCVTreeReg1.csv")
 	return gridCV.grid_scores_
 
-'''
-Below is my KNN regression experiment on the robot data. This ended up being the
-most accurate:
-Best Params: {'clf__weights': 'uniform', 'clf__metric': 'euclidean', 'feat_select__k': 3, 'clf__n_neighbors': 42}
-'''
+
 
 def robotKNNRegExp():
+	'''
+	Below is my KNN regression experiment on the robot data. This ended up being the
+	most accurate:
+	Best Params: {'clf__weights': 'uniform', 'clf__metric': 'euclidean', 'feat_select__k': 3, 'clf__n_neighbors': 42}
+	'''
 	print "Starting Robot KNN Reg Expirament"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
@@ -126,11 +130,12 @@ def robotKNNRegExp():
 	'''
 	Best Params: {'clf__weights': 'uniform', 'clf__metric': 'euclidean', 'feat_select__k': 3, 'clf__n_neighbors': 42}
 	'''
-'''
-Below is my SVR Expirament on the robot data
-'''
 
 def robotSVRExp():
+	'''
+	Below is my SVR Expirament on the robot data
+	'''
+
 	print "Starting Robot SVR Reg Expirament"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
@@ -152,11 +157,12 @@ def robotSVRExp():
 	kaggle.kaggleize(predict, "../Predictions/RobotArm/GridCVSVR1.csv")
 	return gridCV.grid_scores_
 
-'''
-Below is my LinearSVR Expirament on the robot data
-'''
+
 
 def robotLinearSVRExp():
+	'''
+	Below is my LinearSVR Expirament on the robot data
+	'''
 	print "Starting Robot LinearSVR Reg Expirament"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
@@ -178,10 +184,11 @@ def robotLinearSVRExp():
 	kaggle.kaggleize(predict, "../Predictions/RobotArm/GridCVLinearSVR4.csv")
 	return gridCV.grid_scores_
 
-'''
-Below is my Gradient Boosting Regression Expirament on the robot data
-'''
+
 def robotGradienBoostRegxp():
+	'''
+	Below is my Gradient Boosting Regression Expirament on the robot data
+	'''
 	print "Starting Robot Gradient Boost Reg Expirament"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(3,interaction_only=False)),
@@ -227,12 +234,13 @@ def makeRobotScatterMatrix():
 	return
 
 
-'''
-Below is the code to preform ols on the robot data
-I used pandas because I found the output to be the most
-sensible 
-'''
+
 def makeRobotOls():
+	'''
+	Below is the code to preform ols on the robot data
+	I used pandas because I found the output to be the most
+	sensible 
+	'''
 	print "Making Robot Ols"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	varNames=["joint1Pos","joint2Pos","joint3Pos","joint1AngVel","joint2AngVel","joint3AngVel","joint1torque","joint2torque","j1j2int"]
@@ -253,11 +261,12 @@ def makeRobotOls():
 	#plt.savefig("../Figures/robotCorrelationMatrix4")
 	print "Complete"
 	return
-'''
-Below is the code to make the bank ols report
-'''
+
 
 def makeBankOls():
+	'''
+	Below is the code to make the bank ols report
+	'''
 	print "Making Bank Ols"
 	features_train,labels_train,features_test,labels_test=loadBankData()
 	df=pd.DataFrame(features_train)
@@ -341,12 +350,13 @@ def loadBankData():
 	print(labels_test[0])
 	return features_train, labels_train, features_test, labels_test
 
-'''
-The code below is for my bank ridge lasso Expirament
-'''
+
 
 
 def bankRidgeLassoExp():
+	'''
+	The code below is for my bank ridge lasso Expirament
+	'''
 	print "Starting bank Ridge Lasso Expirament"
 	features_train,labels_train,features_test,labels_test=loadBankData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2)),
@@ -365,14 +375,15 @@ def bankRidgeLassoExp():
 	kaggle.kaggleize(predict, "../Predictions/BankQueues/GridCVRidgeLassoTest12.csv")
 	return gridCV.grid_scores_
 
-'''
-Below is the code to make the bank scatter_matrix.
-Note that this takes a very long time, so I will not include a run of this in the final
-code submission
 
-'''
 
 def makeBankScatterMatrix():
+	'''
+	Below is the code to make the bank scatter_matrix.
+	Note that this takes a very long time, so I will not include a run of this in the final
+	code submission
+
+	'''
 	print "Making bank scatter matrix"
 	features_train,labels_train,features_test,labels_test=loadBankData()
 	df=pd.DataFrame(features_train)
@@ -383,11 +394,12 @@ def makeBankScatterMatrix():
 	plt.savefig("../Figures/BankCorrelationMatrix2")
 	print "Complete"
 	return
-'''
-below is the code to make my bank plots
 
-'''
 def plotBankRidge(bankRidgeGrid):
+	'''
+	below is the code to make my bank plots
+
+	'''
 	clf=[type(Ridge()),type(Lasso())]
 	alpha=range(1,100)
 	feat_select__k=[200,300,400,'all']
