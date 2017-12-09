@@ -79,9 +79,9 @@ def robotRidgeLassoExp():
 
 def robotTreeRegExp():
 	'''
-	Below is my tree regression Expirament with the robot data
+	Below is my tree regression experiment with the robot data
 	'''
-	print "Starting Robot Tree Reg Expirament"
+	print "Starting Robot Tree Reg experiment"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
 			('feat_select',SelectKBest(f_regression,k=10)),
@@ -108,7 +108,7 @@ def robotKNNRegExp():
 	most accurate:
 	Best Params: {'clf__weights': 'uniform', 'clf__metric': 'euclidean', 'feat_select__k': 3, 'clf__n_neighbors': 42}
 	'''
-	print "Starting Robot KNN Reg Expirament"
+	print "Starting Robot KNN Reg experiment"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
 			('feat_select',SelectKBest(f_regression,k=10)),
@@ -136,7 +136,7 @@ def robotSVRExp():
 	Below is my SVR Expirament on the robot data
 	'''
 
-	print "Starting Robot SVR Reg Expirament"
+	print "Starting Robot SVR Reg experiment"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
 			('feat_select',SelectKBest(f_regression,k=10)),
@@ -163,7 +163,7 @@ def robotLinearSVRExp():
 	'''
 	Below is my LinearSVR Expirament on the robot data
 	'''
-	print "Starting Robot LinearSVR Reg Expirament"
+	print "Starting Robot LinearSVR Reg experiment"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(2,interaction_only=False)),
 			('feat_select',SelectKBest(f_regression,k=10)),
@@ -187,9 +187,9 @@ def robotLinearSVRExp():
 
 def robotGradienBoostRegxp():
 	'''
-	Below is my Gradient Boosting Regression Expirament on the robot data
+	Below is my Gradient Boosting Regression experiment on the robot data
 	'''
-	print "Starting Robot Gradient Boost Reg Expirament"
+	print "Starting Robot Gradient Boost Reg experiment"
 	features_train,labels_train,features_test,labels_test=loadRobotData()
 	pipeFeat=[('addFeatures',PolynomialFeatures(3,interaction_only=False)),
 			('feat_select',SelectKBest(f_regression,k=10)),
@@ -355,7 +355,7 @@ def loadBankData():
 
 def bankRidgeLassoExp():
 	'''
-	The code below is for my bank ridge lasso Expirament
+	The code below is for my bank ridge lasso experiment
 	'''
 	print "Starting bank Ridge Lasso Expirament"
 	features_train,labels_train,features_test,labels_test=loadBankData()
@@ -463,14 +463,14 @@ Uncomment below to make Bank scatter_matrix
 makeBankScatterMatrix()
 
 '''
-Uncomment below to run the KNNReg Expirament on the Robot Data
+Uncomment below to run the KNNReg experiment on the Robot Data
 '''
 rbtKnnRegGrid=robotKNNRegExp()
 rbtKnnRegGrid=loadFromPickle('robotKnnRegGrid.p')
 plotKnnRobot(rbtKnnRegGrid)
 
 '''
-Uncomment below to run the Ridge Lasso Expirament on the 
+Uncomment below to run the Ridge Lasso experiment on the 
 '''
 bankRidgeLassoGrid=bankRidgeLassoExp()
 bankRidgeGrid=loadFromPickle('bankRidgeLassoGrid.p')
